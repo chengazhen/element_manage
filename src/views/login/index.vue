@@ -36,7 +36,7 @@
 <script>
 // @ is an alias to /src
 import api from "@/api/getData.js";
-import { mapState, mapMutations } from "vuex";
+import { mapState, mapMutations, mapActions } from "vuex";
 import { async } from "q";
 export default {
   name: "home",
@@ -70,6 +70,7 @@ export default {
     };
   },
   methods: {
+    ...mapActions(["getAdminInfo"]),
     submitForm(formName) {
       this.$refs[formName].validate(async valid => {
         if (valid) {
@@ -78,12 +79,12 @@ export default {
             this.ruleForm.acount,
             this.ruleForm.pass
           );
-          console.log(result);
           if (result.data.status === 1) {
             this.$message("恭喜登录成功");
             this.$router.push("/manage");
           } else if (result.data.status === 0) {
-            this.$message(result.message);
+            console.log(result);
+            this.$message(result.data.message);
           }
         } else {
           console.log("error submit!!");
@@ -92,23 +93,28 @@ export default {
       });
     }
   },
-  // submitForm() {
-  //   // 辨别是否有用户
-  //   if (this.users.some(item => item.acount === this.ruleForm.acount)) {
-  //     // 辨别密码是否正确
-  //     if (this.users.some(item => item.password === this.ruleForm.password)) {
-  //       this.$router.push("/manage");
-  //     } else {
-  //       this.$message("密码错误");
-  //     }
-  //   } else {
-  //     this.$message("没有此用户");
-  //   }
-  // }
-  // ...mapMutations([])
 
+  watch: {
+    adminInfo(newValue, old) {
+      // console.log(newValue, old);
+      if (newValue) {
+        this.$message({
+          message: "检测到之前登录过,已经为您自动登录",
+          type: "success"
+        });
+        this.$router.push("/manage");
+      }
+    }
+  },
+  mounted() {
+    // console.log(2);
+    if (!this.adminInfo.id) {
+      console.log("执行");
+      this.getAdminInfo();
+    }
+  },
   computed: {
-    ...mapState(["users"])
+    ...mapState(["adminInfo"])
   }
 };
 </script>

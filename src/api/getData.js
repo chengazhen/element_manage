@@ -167,8 +167,47 @@ export default {
       console.log(res);
     })
   },
+  //获取管理员信息
   getAdimData() {
-    axios.get('/admin/info').then(res => {
+    return axios.get('/admin/info').then(res => res.data).catch(res => {
+      console.log(res)
+    })
+  },
+  // 退出登录
+  getSignOut() {
+    return axios.get('/admin/singout').catch(res => {
+      console.log(res)
+    })
+  },
+  //请求某天用户注册量
+  getSignCount(params) {
+    return axios.get(`/statis/user/${params}/count`).catch(res => {
+      console.log(res)
+    })
+  },
+  //获取全部注册用户
+  getAallCount() {
+    return axios.get('/v1/users/count').catch(res => {
+      console.log(res)
+    })
+  },
+  getAdimCount(params) {
+    return axios.get(`/statis/admin/${params}/count`).catch(res => {
+      console.log(res)
+    })
+  },
+  getAdminAll(params) {
+    return axios.get('/admin/count').catch(res => {
+      console.log(res)
+    })
+  },
+  getOrder(params) {
+    return axios.get(`/statis/order/${params}/count`).catch(res => {
+      console.log(res)
+    })
+  },
+  getAllOrder() {
+    return axios.get(`/bos/orders/count`).catch(res => {
       console.log(res)
     })
   }

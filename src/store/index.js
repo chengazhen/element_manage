@@ -1,23 +1,36 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import api from '@/api/getData.js'
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    users: []
+    adminInfo: '',
   },
   mutations: {
-    addusers({
-      users
-    }, val) {
-      let user = {};
-      for (var i in val) {
-        user[i] = val[i];
-      };
-      users.push(user);
+    saveAdminInfo(state, val) {
+      // console.log(val)
+      state.adminInfo = val;
     }
   },
-  actions: {},
+  actions: {
+    async getAdminInfo({
+      commit,
+      state
+    }) {
+      try {
+        const result = await api.getAdimData();
+        // console.log(result)
+        if (result.status == 1) {
+          state.adminInfo = result.data.id;
+          // console.log(state.adminInfo)
+        } else {
+          throw new Error(result.type)
+        }
+      } catch (err) {
+        
+      }
+    }
+  },
   modules: {}
 })

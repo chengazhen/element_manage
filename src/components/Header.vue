@@ -9,22 +9,44 @@
         <el-breadcrumb-item :key="index" v-else>{{item}}</el-breadcrumb-item>
       </template>
     </el-breadcrumb>
-    <el-dropdown trigger="click">
+    <el-dropdown trigger="hover" @command="handleCommand">
       <img :src="user" alt />
       <el-dropdown-menu slot="dropdown">
-        <el-dropdown-item icon="el-icon-user-solid">用户信息</el-dropdown-item>
-        <el-dropdown-item icon="el-icon-warning">退出登录</el-dropdown-item>
+        <el-dropdown-item icon="el-icon-user-solid" command="user">用户信息</el-dropdown-item>
+        <el-dropdown-item icon="el-icon-warning" command="out">退出登录</el-dropdown-item>
       </el-dropdown-menu>
     </el-dropdown>
   </div>
 </template>
 <script>
+import api from "@/api/getData.js";
 import user from "@/assets/images/default.jpg";
 export default {
   data() {
     return {
       user
     };
+  },
+  methods: {
+    async handleCommand(command) {
+      if (command === "out") {
+        try {
+          console.log(api.getSignOut());
+          const result = await api.getSignOut();
+          console.log(result);
+          if (result.data.status === 1) {
+            this.$message(result.data.success);
+            this.$router.push("/");
+          } else {
+            this.$message("退出失败");
+          }
+        } catch (e) {
+          console.log(e);
+        }
+      } else if (command === "user") {
+        this.$router.push("/manage/");
+      }
+    }
   }
 };
 </script>
