@@ -47,6 +47,7 @@
         <el-table-column label="操作" prop="desc">
           <template slot-scope="scope">
             <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+            <el-button size="mini" @click="handleAdd(scope.$index, scope.row)">添加</el-button>
             <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
           </template>
         </el-table-column>
@@ -74,7 +75,7 @@ export default {
       limit: 20,
       offset: 0,
       count: 0,
-      loading: true 
+      loading: true
     };
   },
   created() {
@@ -86,11 +87,15 @@ export default {
       let count = await api.getMerCount();
       this.count = count;
       this.tableData = data;
-      this.loading=false;
+      this.loading = false;
     },
     handleCurrentChange(val) {
       this.offset = val;
       this.initData();
+    },
+    handleAdd(index, val) {
+      console.log(index, val);
+      this.$router.push({ path: "/manage/addProduce", query: { id: val.id } });
     }
   },
   components: {
@@ -98,7 +103,7 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .demo-table-expand .el-form-item {
   width: 50%;
   margin: 0;

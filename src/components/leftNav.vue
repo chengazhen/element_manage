@@ -3,13 +3,13 @@
     <el-row class="tac">
       <el-col :span="24" style="background-color: #324057;">
         <el-menu
-          default-active="/manage/"
+          :default-active="defaultClass"
           class="el-menu-vertical-demo"
           @open="handleOpen"
           @close="handleClose"
           text-color="#fff"
-          active-text-color="#ffd04b"
           :router="true"
+          active-text-color="#ffd04b"
         >
           <el-menu-item index="/manage/">
             <i class="el-icon-menu"></i>首页
@@ -79,10 +79,17 @@
 export default {
   methods: {
     handleOpen(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(key, keyPath);
     },
     handleClose(key, keyPath) {
-      console.log(key, keyPath);
+      // console.log(key, keyPath);
+    }
+  },
+  computed: {
+    defaultClass() {
+      console.log(this.$route.path);
+      return this.$route.path;
+      //是当前菜单可以处于激活样式
     }
   }
 };

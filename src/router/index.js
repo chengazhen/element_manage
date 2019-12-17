@@ -1,20 +1,20 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-
+// import { MessageBox } from 'element-ui';
 Vue.use(VueRouter)
 
 const routes = [{
-    path: '/',
-    name: 'login',
-    component: () => import('@/views/login/index'),
-    meta: {
-      flag: true
-    }
-  },
-  {
-    path: "/manage",
-    component: () => import('@/views/manage/index'),
-    children: [{
+  path: '/',
+  name: 'login',
+  component: () => import('@/views/login/index'),
+  meta: {
+    flag: true
+  }
+},
+{
+  path: "/manage",
+  component: () => import('@/views/manage/index'),
+  children: [{
       path: '/',
       name: 'home',
       component: () => import('@/views/home/index'),
@@ -66,37 +66,42 @@ const routes = [{
       component: () => import('@/views/addProduce/index'),
       meta: {
         path: ['添加数据', '添加商品']
-      }
-    }, {
-      name: 'userDis',
-      path: 'userDis',
-      component: () => import('@/views/userDis/index'),
-      meta: {
-        path: ['图表', '用户分布']
-      }
-    }, {
-      name: 'docEdit',
-      path: 'docEdit',
-      component: () => import('@/views/docEdit/index'),
-      meta: {
-        path: ['编辑', '文本编辑']
-      }
-    }, {
-      name: 'addAdmin',
-      path: 'addAdmin',
-      component: () => import('@/views/addAdmin/index'),
-      meta: {
-        path: ['设置', '管理员设置']
-      }
-    }, {
-      name: 'explain',
-      path: 'explain',
-      component: () => import('@/views/explain/index'),
-      meta: {
-        path: ['说明', '说明']
-      }
-    }, ]
-  }
+      },
+  },
+  {
+    name: 'userDis',
+    path: 'userDis',
+    component: () => import('@/views/userDis/index'),
+    meta: {
+      path: ['图表', '用户分布']
+    }
+  },
+  {
+    name: 'docEdit',
+    path: 'docEdit',
+    component: () => import('@/views/docEdit/index'),
+    meta: {
+      path: ['编辑', '文本编辑']
+    }
+  },
+  {
+    name: 'addAdmin',
+    path: 'addAdmin',
+    component: () => import('@/views/addAdmin/index'),
+    meta: {
+      path: ['设置', '管理员设置']
+    }
+  },
+  {
+    name: 'explain',
+    path: 'explain',
+    component: () => import('@/views/explain/index'),
+    meta: {
+      path: ['说明', '说明']
+    }
+  },
+]
+}
 ]
 
 const router = new VueRouter({

@@ -24,13 +24,14 @@
 import page from "@/components/page.vue";
 import api from "@/api/getData.js";
 export default {
+  name: "orderList",
   data() {
     return {
       tableData: [],
       count: 0,
       limit: 20,
       offset: 0,
-      loading:true
+      loading: true
     };
   },
   created() {
@@ -42,7 +43,7 @@ export default {
       const list = await api.getOrderList(this.offset, this.limit);
       this.tableData = list;
       this.count = count;
-      this.loading=false;
+      this.loading = false;
     },
     handleCurrentChange(val) {
       this.offset = val;

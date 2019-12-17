@@ -16,7 +16,7 @@ console.log(process.env.NODE_ENV)
 // 打开跨域携带cookie
 axios.defaults.withCredentials = true
 //设置5秒后未响应自动断开
-axios.defaults.timeout = 5000;
+axios.defaults.timeout = 10000;
 axios.interceptors.request.use(function (config) {
   // 在发送请求之前做些什么
   // loading = Loading.service({
@@ -76,7 +76,7 @@ export default {
   },
   //获取食品列表
   getFoodList(offset, limit) {
-    return axios.get(`/shopping/v2/foods?offset=${offset}&limit=${limit}&restaurant_id=2`).then(res => res.data).catch(res => {
+    return axios.get(`/shopping/v2/foods?offset=${offset}&limit=${limit}&restaurant_id=undefined`).then(res => res.data).catch(res => {
       console.log(res);
     })
   },
@@ -191,24 +191,40 @@ export default {
       console.log(res)
     })
   },
+  //获取某天注册的管理员数量
   getAdimCount(params) {
     return axios.get(`/statis/admin/${params}/count`).catch(res => {
       console.log(res)
     })
   },
+  //获取所有的管理员数量
   getAdminAll(params) {
     return axios.get('/admin/count').catch(res => {
       console.log(res)
     })
   },
+  //获取某天的订单数量
   getOrder(params) {
     return axios.get(`/statis/order/${params}/count`).catch(res => {
       console.log(res)
     })
   },
+  //获取所有的订单数量
   getAllOrder() {
     return axios.get(`/bos/orders/count`).catch(res => {
       console.log(res)
     })
+  },
+  //获取某个店铺的食品种类
+  getProduceSort(params) {
+    return axios.get(`/shopping/getcategory/${params}`)
+  },
+  //添加某个商店的食品种类
+  postAddGoodsSort(params) {
+    return axios.post('/shopping/addcategory', params);
+  },
+  //添加商品
+  postAddProduce(params) {
+    return axios.post('/shopping/addfood', params)
   }
 }

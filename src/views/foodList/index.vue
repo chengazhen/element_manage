@@ -47,26 +47,34 @@
         <el-table-column label="食品名称" prop="name"></el-table-column>
         <el-table-column label="食品介绍" prop="description"></el-table-column>
         <el-table-column label="评分" prop="rating"></el-table-column>
-        <el-table-column label="操作">
-          <template slot-scope="scope">
-            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
-            <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
-          </template>
-        </el-table-column>
+        <!-- <el-col :span="4"> -->
+          <el-table-column label="操作">
+            <template slot-scope="scope">
+              <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+              <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">删除</el-button>
+            </template>
+          </el-table-column>
+        <!-- </el-col> -->
       </el-table>
     </div>
-    <div></div>
+    <div>
+      <page :count="count" />
+    </div>
   </div>
 </template>
 <script>
 import api from "@/api/getData.js";
+import page from "@/components/page.vue";
 export default {
   data() {
     return {
       limit: 20,
       offset: 0,
       tableData: [],
-      loading:true
+      loading: true,
+      count: 0,
+      limit: 20,
+      offset: 0
     };
   },
   created() {
@@ -77,11 +85,20 @@ export default {
       const data = await api.getFoodList(this.offset, this.limit);
       const count = await api.getFoodCount();
       this.tableData = data;
-      this.loading=false;
+      this.loading = false;
+      this.count = count;
       console.log(data, count, 2);
     },
     handleEdit() {},
-    handleDelete() {}
+    handleDelete() {},
+    handleCurrentChange(val) {
+      this.offset = val;
+      this.initData();
+    }
+    // handleAdd() {}
+  },
+  components: {
+    page
   }
 };
 </script>

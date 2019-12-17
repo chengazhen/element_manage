@@ -1,8 +1,8 @@
 <template>
   <div class="addShop">
     <h3>注册店铺</h3>
-    <el-form :ref="form" :rules="rules" :model="form"  >
-      <el-form-item label="店铺名称:" prop="name" >
+    <el-form :ref="form" :rules="rules" :model="form" label-width="120px">
+      <el-form-item label="店铺名称:" prop="name">
         <el-input v-model="form.name" type="inline-block"></el-input>
       </el-form-item>
       <el-form-item label="详细地址:" class="address_box" prop="address">
@@ -146,6 +146,7 @@ import qs from "qs";
 import api, { baseUrl, imgBaseUrl } from "@/api/getData.js";
 import { async } from "q";
 export default {
+  name: "addStore",
   data() {
     return {
       rules: {
@@ -463,12 +464,13 @@ export default {
   }
 };
 </script>
-<style lang="scss">
+<style lang="scss" scoped>
 .el-form-item__label {
   // width: auto !important;
   // style="width:auto"
   color: #000000;
 }
+
 .addShop {
   border: 1px solid #3e3e3e;
   padding: 10px;
@@ -478,51 +480,14 @@ export default {
     margin-bottom: 10px;
   }
 }
-.el-form-item__content {
-  text-align: left;
-  margin-left: 85px !important;
-}
+
 .el-switch__label.is-active {
   color: #303133;
 }
 .el-switch__label * {
   margin-left: 10px;
 }
-// .el-col-2 {
-//   text-align: center;
-// }
-.avatar-uploader .el-upload {
-  border: 1px dashed #d9d9d9;
-  border-radius: 6px;
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-.avatar-uploader .el-upload:hover {
-  border-color: #409eff;
-}
-.avatar-uploader-icon {
-  font-size: 28px;
-  color: #8c939d;
-  width: 178px;
-  height: 178px;
-  line-height: 178px;
-  text-align: center;
-}
-.avatar {
-  width: 178px;
-  height: 178px;
-  display: block;
-}
-.address_box {
-  position: relative;
-  margin-bottom: 40px;
-  .address {
-    position: absolute;
-    top: 50px;
-    z-index: 1;
-  }
-}
+
 .el-table th {
   color: #000000;
   background-color: #eff2f7;
