@@ -3,7 +3,7 @@
     <el-pagination
       @current-change="handleCurrentChange"
       :page-size="20"
-      :pager-count="9"
+      :pager-count="11"
       layout="prev, pager, next"
       :total="count"
     ></el-pagination>
@@ -20,14 +20,13 @@ export default {
   components: {},
   methods: {
     handleCurrentChange(val) {
-      console.log(val);
-      this.$parent.handleCurrentChange(val);
+      this.$parent.handleCurrentChange((val - 1) * 20);
     }
   }
 };
 </script>
 <style lang="scss">
-  .pag_box{
-    padding-top: 20px;
-  }
+.pag_box {
+  padding-top: 20px;
+}
 </style>

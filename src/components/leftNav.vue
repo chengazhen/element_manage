@@ -57,7 +57,7 @@
               <i class="el-icon-setting"></i>
               <span>设置</span>
             </template>
-            <el-menu-item index="/manage/addAdmin">管理员设置</el-menu-item>
+            <el-menu-item index="/manage/admin">管理员设置</el-menu-item>
           </el-submenu>
           <!-- 第六个导航 -->
           <el-submenu index="6">
@@ -89,7 +89,7 @@ export default {
     defaultClass() {
       console.log(this.$route.path);
       return this.$route.path;
-      //是当前菜单可以处于激活样式
+      //使当前菜单可以处于激活样式
     }
   }
 };
@@ -107,8 +107,6 @@ export default {
   }
   .el-submenu .el-menu-item {
     background-color: #1f2d3d;
-  }
-  span {
   }
 }
 .leftNav .el-menu {

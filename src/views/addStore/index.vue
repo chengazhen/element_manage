@@ -142,7 +142,6 @@
 </template>
 <script>
 import qs from "qs";
-// import  from "@/api/getData.js";
 import api, { baseUrl, imgBaseUrl } from "@/api/getData.js";
 import { async } from "q";
 export default {
@@ -178,7 +177,6 @@ export default {
         image_path: [
           { required: true, message: "请上传店铺头像", trigger: "change" }
         ]
-        // desc: [{ required: true, message: "请填写活动形式", trigger: "blur" }]
       },
       form: {
         name: "哈根达斯旗舰店",
@@ -247,7 +245,6 @@ export default {
       //请求店铺种类
       const list = await api.getShopSort();
       const city = await api.getCity();
-      console.log(city);
       this.city = city || "自动选为商丘";
       this.id = city.id || 0;
       list.forEach(element => {
@@ -331,11 +328,9 @@ export default {
     },
     // 远程搜索的方法
     async querySearchAsync(queryString, cb) {
-      console.log(queryString);
       let listPlace = [];
       if (queryString) {
         let list = await api.getLocation(this.id, queryString);
-        console.log(list, list instanceof Array);
         if (list instanceof Array) {
           list.forEach(item => {
             let place = {
@@ -348,17 +343,14 @@ export default {
       }
       if (listPlace.length > 0) {
         cb(listPlace);
-        console.log(listPlace);
       }
     },
     handleSelect(item) {
       this.form.latitude = this.city.latitude;
       this.form.longitude = this.city.longitude;
-      console.log(this.form.longitude, this.form.latitude);
     },
     //优惠活动详情
     selectActive(val) {
-      // console.log(val);
       let act = {};
       switch (val) {
         case "满减优惠":
@@ -383,7 +375,6 @@ export default {
         cancelButtonText: "取消"
       })
         .then(({ value }) => {
-          console.log(value);
           act.description = value;
           this.form.activities.push(act);
           this.$message({
@@ -405,14 +396,13 @@ export default {
     },
     //提交表单
     onSubmit(formName) {
-      console.log(formName);
       this.$refs[formName].validate(async valid => {
         if (valid) {
           try {
             let result = await api.postAddShop(this.form);
-            console.log(result);
+            console.log("添加店铺结果", result);
             if (result.status === 1) {
-              this.$message("添加成功");
+              this.$message({ message: "添加成功", type: "success" });
               this.form = {
                 name: "哈根达斯旗舰店",
                 address: "",

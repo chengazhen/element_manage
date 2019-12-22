@@ -85,9 +85,9 @@ const routes = [{
     }
   },
   {
-    name: 'addAdmin',
-    path: 'addAdmin',
-    component: () => import('@/views/addAdmin/index'),
+    name: 'admin',
+    path: 'admin',
+    component: () => import('@/views/admin/index'),
     meta: {
       path: ['设置', '管理员设置']
     }

@@ -1,14 +1,5 @@
 <template>
   <div class="home">
-    <!-- 
-      <el-input   placeholder="请输入账号" v-model="acount"></el-input>
-      <br />
-      <br />
-      <el-input placeholder="请输入密码" v-model="password" show-password></el-input>
-      <br />
-      <br />
-      <el-button type="primary" @click="enter()">登录</el-button>
-    </section>-->
     <transition appear appear-active-class="animated fadeInDown">
       <section class="form">
         <h1>后台管理系统</h1>
@@ -96,18 +87,22 @@ export default {
 
   watch: {
     adminInfo(newValue, old) {
-      // console.log(newValue, old);
+      console.log(2);
+      console.log(newValue);
+      // debugger;
       if (newValue) {
         this.$message({
           message: "检测到之前登录过,已经为您自动登录",
           type: "success"
         });
-        this.$router.push("/manage");
+        setTimeout(() => {
+          this.$router.push("/manage");
+        }, 500);
       }
     }
   },
   mounted() {
-    // console.log(2);
+    console.log(2);
     if (!this.adminInfo.id) {
       console.log("执行");
       this.getAdminInfo();

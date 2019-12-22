@@ -9,7 +9,7 @@ export default new Vuex.Store({
   },
   mutations: {
     saveAdminInfo(state, val) {
-      // console.log(val)
+      console.log(val)
       state.adminInfo = val;
     }
   },
@@ -20,10 +20,10 @@ export default new Vuex.Store({
     }) {
       try {
         const result = await api.getAdimData();
-        // console.log(result)
+        console.log(result)
         if (result.status == 1) {
-          state.adminInfo = result.data.id;
-          // console.log(state.adminInfo)
+          state.adminInfo = result.data;
+          console.log(state.adminInfo)
         } else {
           throw new Error(result.type)
         }

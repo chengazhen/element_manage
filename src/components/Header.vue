@@ -10,7 +10,7 @@
       </template>
     </el-breadcrumb>
     <el-dropdown trigger="hover" @command="handleCommand">
-      <img :src="user" alt />
+      <img :src="imgBaseUrl+adminInfo.avatar" alt />
       <el-dropdown-menu slot="dropdown">
         <el-dropdown-item icon="el-icon-user-solid" command="user">用户信息</el-dropdown-item>
         <el-dropdown-item icon="el-icon-warning" command="out">退出登录</el-dropdown-item>
@@ -19,12 +19,13 @@
   </div>
 </template>
 <script>
-import api from "@/api/getData.js";
+import api, { imgBaseUrl } from "@/api/getData.js";
 import user from "@/assets/images/default.jpg";
+import { mapState, mapActions } from "vuex";
 export default {
   data() {
     return {
-      user
+      imgBaseUrl
     };
   },
   methods: {
@@ -44,9 +45,18 @@ export default {
           console.log(e);
         }
       } else if (command === "user") {
-        this.$router.push("/manage/");
+        this.$router.push("/manage/admin");
       }
-    }
+    },
+    // ...mapActions(["getAdminInfo"])
+  },
+  // created() {
+  //   if (!this.adminInfo) {
+  //     this.getAdminInfo();
+  //   }
+  // },
+  computed: {
+    ...mapState(["adminInfo"])
   }
 };
 </script>

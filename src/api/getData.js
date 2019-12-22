@@ -63,8 +63,8 @@ export default {
     console.log(res)
   }),
   //获取商铺列表
-  getMerchant(offset, limit) {
-    return axios.get(`/shopping/restaurants?latitude=34.74725&longitude=11&offset=${offset}&limit=${limit}`).then(res => res.data).catch(res => {
+  getMerchant(params) {
+    return axios.get(`/shopping/restaurants?latitude=${params.latitude}&longitude=${params.longitude}&offset=${params.offset}&limit=${params.limit}`).then(res => res.data).catch(res => {
       console.log(res);
     })
   },
@@ -226,5 +226,18 @@ export default {
   //添加商品
   postAddProduce(params) {
     return axios.post('/shopping/addfood', params)
+  },
+  //获取城市分布
+  getCityUser() {
+    return axios.get('/v1/user/city/count');
+  },
+  //更新餐馆
+  postUpdata(params) {
+    return axios.post('/shopping/updateshop', params)
+  },
+  //删除餐馆
+  deleteShop(params) {
+    console.log(params)
+    return axios.delete(`/shopping/restaurant/${params}`)
   }
 }
