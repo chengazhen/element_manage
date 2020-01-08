@@ -74,6 +74,14 @@ export default {
       console.log(res);
     })
   },
+  // 获取商品详情
+  getGoodsDetail(params) {
+    return axios.get('/shopping/v2/menu/' + params)
+  },
+  //获取商店详情
+  getShopDetail(params) {
+    return axios.get('/shopping/restaurant/' + params)
+  },
   //获取食品列表
   getFoodList(offset, limit) {
     return axios.get(`/shopping/v2/foods?offset=${offset}&limit=${limit}&restaurant_id=undefined`).then(res => res.data).catch(res => {
@@ -85,6 +93,10 @@ export default {
     return axios.get(`/shopping/v2/foods/count`).then(res => res.data.count).catch(res => {
       console.log(res);
     })
+  },
+  //获取食品种类
+  getFoodCategory(params) {
+    return axios.get('/shopping/v2/menu/' + params)
   },
   //获取订单数量
   getOrderCount() {
@@ -239,5 +251,12 @@ export default {
   deleteShop(params) {
     console.log(params)
     return axios.delete(`/shopping/restaurant/${params}`)
+  },
+  //更新食品
+  upDataGoods(params) {
+    console.log(params)
+    return axios.post("/shopping/v2/updatefood",
+      params
+    );
   }
 }
