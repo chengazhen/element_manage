@@ -18,7 +18,9 @@ npm run build
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
 ### 技术栈
-vue + vuex + vue-router  + ES6/7 + less + element-ui
+vue + vuex + vue-router  + ES6/7 + sass + element-ui
+### 注意点 
+因为本项目主要是练习,所以路由拦截部分没有添加登录验证,在地址栏可以直接输入地址跳过登录页面
 
 ### 效果演示
 
