@@ -17,3 +17,7 @@ npm run build
 
 ### Customize configuration
 See [Configuration Reference](https://cli.vuejs.org/config/).
+
+### 效果演示
+
+ [项目展示地址](http://39.107.233.206:88/#/)
