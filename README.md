@@ -24,7 +24,7 @@ vue + vuex + vue-router  + ES6/7 + sass + element-ui
 
 ### 效果演示
 
- [项目展示地址](http://39.107.233.206:88/#/)
+ [项目展示地址,密码和账号随便输入,没有注册过,自动注册](https://azhen98.github.io/element_manage/#/)
 
 ## 功能
   - [x] 登陆/注销 -- 完成
