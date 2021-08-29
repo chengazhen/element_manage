@@ -1,5 +1,5 @@
 # element_manage
-
+> 闲暇之间提升下自己,`study hard and make progress every day`
 ## Project setup
 ```
 npm install
